@@ -383,7 +383,7 @@
                             </dd>
                         </dl>
                     </li>
-                    <li data-name="user" class="layui-nav-item">
+                    <li data-name="community" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="社团" lay-direction="2">
                             <i class="layui-icon layui-icon-user"></i>
                             <cite>社团</cite>
