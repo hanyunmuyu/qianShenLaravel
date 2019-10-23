@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +5,8 @@
     <title>芊莘后台管理系统-首页</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
 
@@ -38,7 +37,8 @@
                     </a>
                 </li>
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords=">
+                    <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search"
+                           layadmin-event="serach" lay-action="template/search.html?keywords=">
                 </li>
             </ul>
             <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
@@ -79,7 +79,8 @@
                 </li>
 
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>
+                    <a href="javascript:;" layadmin-event="about"><i
+                                class="layui-icon layui-icon-more-vertical"></i></a>
                 </li>
                 <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
                     <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
@@ -94,7 +95,8 @@
                     <span>layuiAdmin</span>
                 </div>
 
-                <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+                <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu"
+                    lay-filter="layadmin-system-side-menu">
                     <li data-name="home" class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;" lay-tips="主页" lay-direction="2">
                             <i class="layui-icon layui-icon-home"></i>
@@ -123,7 +125,8 @@
                                 <dl class="layui-nav-child">
                                     <dd data-name="list"><a lay-href="component/grid/list.html">等比例列表排列</a></dd>
                                     <dd data-name="mobile"><a lay-href="component/grid/mobile.html">按移动端排列</a></dd>
-                                    <dd data-name="mobile-pc"><a lay-href="component/grid/mobile-pc.html">移动桌面端组合</a></dd>
+                                    <dd data-name="mobile-pc"><a lay-href="component/grid/mobile-pc.html">移动桌面端组合</a>
+                                    </dd>
                                     <dd data-name="all"><a lay-href="component/grid/all.html">全端复杂组合</a></dd>
                                     <dd data-name="stack"><a lay-href="component/grid/stack.html">低于桌面堆叠排列</a></dd>
                                     <dd data-name="speed-dial"><a lay-href="component/grid/speed-dial.html">九宫格</a></dd>
@@ -190,7 +193,8 @@
                                         <a lay-href="component/laydate/theme.html" lay-text="layDate 设定主题">设定主题</a>
                                     </dd>
                                     <dd data-name="special-demo">
-                                        <a lay-href="component/laydate/special-demo.html" lay-text="layDate 特殊示例">特殊示例</a>
+                                        <a lay-href="component/laydate/special-demo.html"
+                                           lay-text="layDate 特殊示例">特殊示例</a>
                                     </dd>
                                 </dl>
                             </dd>
@@ -369,10 +373,27 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a lay-href="{{admin_url('/user/list')}}">网站用户</a>
+                                <a lay-href="{{admin_url('/user/index')}}">网站用户</a>
                             </dd>
                             <dd>
                                 <a lay-href="user/administrators/list.html">后台管理员</a>
+                            </dd>
+                            <dd>
+                                <a lay-href="user/administrators/role.html">角色管理</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li data-name="user" class="layui-nav-item">
+                        <a href="javascript:;" lay-tips="社团" lay-direction="2">
+                            <i class="layui-icon layui-icon-user"></i>
+                            <cite>社团</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a lay-href="{{admin_url('/community/index')}}">社团列表</a>
+                            </dd>
+                            <dd>
+                                <a lay-href="{{admin_url('/category/index')}}">社团类别</a>
                             </dd>
                             <dd>
                                 <a lay-href="user/administrators/role.html">角色管理</a>
@@ -402,7 +423,8 @@
                         </dl>
                     </li>
                     <li data-name="get" class="layui-nav-item">
-                        <a href="javascript:;" lay-href="http://www.layui.com/admin/#get" lay-tips="授权" lay-direction="2">
+                        <a href="javascript:;" lay-href="http://www.layui.com/admin/#get" lay-tips="授权"
+                           lay-direction="2">
                             <i class="layui-icon layui-icon-auz"></i>
                             <cite>授权</cite>
                         </a>
@@ -429,7 +451,8 @@
             </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="home/console.html" lay-attr="home/console.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+                    <li lay-id="home/console.html" lay-attr="home/console.html" class="layui-this"><i
+                                class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
         </div>

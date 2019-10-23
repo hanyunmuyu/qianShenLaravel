@@ -23,4 +23,6 @@ Route::group(['middleware' => ['adminAuth']], function () {
     Route::get('/school/list', 'SchoolController@list');
     Route::get('/community/index', 'CommunityController@index');
     Route::get('/community/list', 'CommunityController@list');
+    Route::get('/category/index', 'CategoryController@index');
+    Route::get('/category/list', 'CategoryController@list');
 });

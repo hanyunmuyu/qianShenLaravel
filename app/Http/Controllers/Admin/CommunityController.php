@@ -23,7 +23,8 @@ class CommunityController extends Controller
     public function list(Request $request)
     {
         $communityName = $request->get('communityName');
-        $communityList = $this->communityRepository->getCommunityList($communityName);
+        $id = $request->get('id');
+        $communityList = $this->communityRepository->getCommunityList($id,$communityName);
         return $this->success($communityList->toArray());
     }
 }
