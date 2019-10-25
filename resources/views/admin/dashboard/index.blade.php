@@ -25,7 +25,7 @@
                                 <div carousel-item>
                                     <ul class="layui-row layui-col-space10">
                                         <li class="layui-col-xs3">
-                                            <a lay-href="home/homepage1.html">
+                                            <a lay-href="{{admin_url('/home')}}">
                                                 <i class="layui-icon layui-icon-console"></i>
                                                 <cite>主页一</cite>
                                             </a>

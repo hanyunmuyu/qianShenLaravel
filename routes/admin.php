@@ -16,6 +16,7 @@ Route::post('/login', 'LoginController@login');
 Route::get('/captcha', 'CaptchaController@index');
 Route::group(['middleware' => ['adminAuth']], function () {
     Route::get('/', 'IndexController@index');
+    Route::get('/home', 'IndexController@homepage');
     Route::get('/dashboard', 'DashboardController@index');
     Route::get('/user/index', 'UserController@index');
     Route::get('/user/list', 'UserController@list');
