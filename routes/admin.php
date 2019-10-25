@@ -26,4 +26,5 @@ Route::group(['middleware' => ['adminAuth']], function () {
     Route::get('/community/list', 'CommunityController@list');
     Route::get('/category/index', 'CategoryController@index');
     Route::get('/category/list', 'CategoryController@list');
+    Route::get('/category/add', 'CategoryController@add');
 });

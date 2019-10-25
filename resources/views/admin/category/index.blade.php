@@ -47,9 +47,9 @@
             </script>
             <script type="text/html" id="table-useradmin-webuser">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i
-                        class="layui-icon layui-icon-edit"></i>编辑</a>
+                            class="layui-icon layui-icon-edit"></i>编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
-                        class="layui-icon layui-icon-delete"></i>删除</a>
+                            class="layui-icon layui-icon-delete"></i>删除</a>
             </script>
         </div>
     </div>
@@ -140,8 +140,8 @@
             , add: function () {
                 layer.open({
                     type: 2
-                    , title: '添加用户'
-                    , content: 'userform.html'
+                    , title: '添加分类'
+                    , content: '{{admin_url('/category/add')}}'
                     , maxmin: true
                     , area: ['500px', '450px']
                     , btn: ['确定', '取消']

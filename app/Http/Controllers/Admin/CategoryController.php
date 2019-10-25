@@ -26,4 +26,9 @@ class CategoryController extends Controller
         $categoryList = $this->categoryRepository->getCategoryList($categoryName);
         return $this->success($categoryList->toArray());
     }
+
+    public function add()
+    {
+        return view('admin.category.add');
+    }
 }
