@@ -27,4 +27,8 @@ Route::group(['middleware' => ['adminAuth']], function () {
     Route::get('/category/index', 'CategoryController@index');
     Route::get('/category/list', 'CategoryController@list');
     Route::get('/category/add', 'CategoryController@add');
+    Route::get('/admin/index', 'AdminController@index');
+    Route::get('/admin/list', 'AdminController@list');
+    Route::get('/admin/edit', 'AdminController@edit');
+    Route::post('/admin/update', 'AdminController@update');
 });

@@ -99,13 +99,6 @@
                 , data: obj.field
                 , method: 'post'
                 , done: function (res) {
-
-                    //请求成功后，写入 access_token
-                    layui.data(setter.tableName, {
-                        key: setter.request.tokenName
-                        , value: res.data.access_token
-                    });
-
                     //登入成功的提示与跳转
                     layer.msg('登入成功', {
                         offset: '15px'
@@ -117,13 +110,6 @@
                 }
             });
 
-        });
-
-
-        //实际使用时记得删除该代码
-        layer.msg('为了方便演示，用户名密码可随意输入', {
-            offset: '15px'
-            , icon: 1
         });
 
     });

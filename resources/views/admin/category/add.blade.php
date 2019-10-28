@@ -12,7 +12,7 @@
 
 <div class="layui-form" lay-filter="layuiadmin-form-role" id="layuiadmin-form-role" style="padding: 20px 30px 0 0;">
     <div class="layui-form-item">
-        <label class="layui-form-label">角色</label>
+        <label class="layui-form-label">父级分类</label>
         <div class="layui-input-block">
             <select name="rolename">
                 <option value="0">管理员</option>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">权限范围</label>
+        <label class="layui-form-label">分类标签</label>
         <div class="layui-input-block">
             <input type="checkbox" name="limits[]" lay-skin="primary" title="内容系统">
             <input type="checkbox" name="limits[]" lay-skin="primary" title="社区系统">
@@ -42,10 +42,11 @@
             <input type="checkbox" name="limits[]" lay-skin="primary" title="删库跑路">
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label">具体描述</label>
-        <div class="layui-input-block">
-            <textarea type="text" name="descr" lay-verify="required" autocomplete="off" class="layui-textarea"></textarea>
+        <label class="layui-form-label">分类名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="role" lay-verify="required" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-hide">

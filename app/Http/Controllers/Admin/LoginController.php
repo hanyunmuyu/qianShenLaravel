@@ -46,7 +46,7 @@ class LoginController extends Controller
         if (!Hash::check($password, $admin->password)) {
             return $this->error('用户或者密码错误');
         }
-        auth('admin')->login($admin);
+        auth('admin')->login($admin, $request->get('remember') ? true : false);
         return $this->success();
     }
 }
