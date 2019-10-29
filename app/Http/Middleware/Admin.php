@@ -40,7 +40,7 @@ class Admin
             }
             $map = [];
             foreach ($rolePermissions as $p) {
-                if (trim($p, '/') == $url) {
+                if (trim('/admin' . $p->path, '/') == $url) {
                     $isAuth = true;
                 }
                 $map[$p->parent_id][] = $p;
@@ -53,7 +53,7 @@ class Admin
                 }
                 $permissions[$k] = $permission;
             }
-            if (!$isAuth) {
+            if (!$isAuth && $url != 'admin') {
                 abort(404);
             }
             view()->share('permissionList', $permissions);
