@@ -25,6 +25,8 @@ class Admin
             }
         }
         if (!$request->ajax()) {
+            $isAuth = false;
+            $url = $request->path();
             $admin = $request->user('admin');
             $permissions = Permission::where('parent_id', 0)->orderby('rank', 'desc')->get();
             if ($admin->role_id != 1) {
@@ -38,6 +40,9 @@ class Admin
             }
             $map = [];
             foreach ($rolePermissions as $p) {
+                if (trim($p, '/') == $url) {
+                    $isAuth = true;
+                }
                 $map[$p->parent_id][] = $p;
             }
             foreach ($permissions as $k => $permission) {
@@ -47,6 +52,9 @@ class Admin
                     $permission->subList = [];
                 }
                 $permissions[$k] = $permission;
+            }
+            if (!$isAuth) {
+                abort(404);
             }
             view()->share('permissionList', $permissions);
         }
