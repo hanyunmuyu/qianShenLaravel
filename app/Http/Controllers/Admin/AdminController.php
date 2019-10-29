@@ -7,6 +7,7 @@ use App\Repositories\Admin\AdminRepository;
 use App\Repositories\Admin\RoleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -27,7 +28,9 @@ class AdminController extends Controller
     public function list(Request $request)
     {
         $userName = $request->get('userName');
-        $adminList = $this->adminRepository->getAdminList($userName);
+        $id = $request->get('id');
+        $email = $request->get('email');
+        $adminList = $this->adminRepository->getAdminList($userName, $id, $email);
         return $this->success($adminList->toArray());
     }
 
@@ -37,6 +40,51 @@ class AdminController extends Controller
         $admin = $this->adminRepository->getAdminById($id);
         $roleList = $this->roleRepository->getRoleList();
         return view('admin.admin.edit', ['admin' => $admin, 'roleList' => $roleList]);
+    }
+
+    public function add(Request $request)
+    {
+        $roleList = $this->roleRepository->getRoleList();
+
+        return view('admin.admin.add', ['roleList' => $roleList]);
+    }
+
+    public function doAdd(Request $request)
+    {
+        $messages = [
+            'user_name.required' => '用户名不可以为空',
+            'password.required' => '密码不可以为空',
+            'email.required' => '密码不可以为空',
+            'role_id.required' => '角色不可以为空',
+            'mobile.required' => '角色不可以为空',
+        ];
+        $rules = [
+            'user_name' => 'required',
+            'password' => 'required',
+            'email' => 'required',
+            'role_id' => 'required',
+            'mobile' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            $msg = '';
+            foreach ($validator->errors()->messages() as $v) {
+                $msg .= $v[0];
+            }
+            return $this->error($msg);
+        }
+        $data = $request->all();
+        unset($data['_token']);
+        $admin = $this->adminRepository->getAdminByUserName($data['user_name']);
+        if ($admin) {
+            return $this->error('用户名已经被占用');
+        }
+        $data['password'] = Hash::make($data['password']);
+        $admin = $this->adminRepository->addAdmin($data);
+        if ($admin) {
+            return $this->success();
+        }
+        return $this->error();
     }
 
     public function update(Request $request)

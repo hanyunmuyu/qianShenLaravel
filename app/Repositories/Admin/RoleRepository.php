@@ -12,4 +12,9 @@ class RoleRepository
     {
         return Role::all();
     }
+
+    public function getRoleById($roleId)
+    {
+        return Role::find($roleId);
+    }
 }

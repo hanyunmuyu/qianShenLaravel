@@ -27,8 +27,16 @@ Route::group(['middleware' => ['adminAuth']], function () {
     Route::get('/category/index', 'CategoryController@index');
     Route::get('/category/list', 'CategoryController@list');
     Route::get('/category/add', 'CategoryController@add');
+
+
+    //管理员 列表
     Route::get('/admin/index', 'AdminController@index');
     Route::get('/admin/list', 'AdminController@list');
+    //管理员 编辑
     Route::get('/admin/edit', 'AdminController@edit');
     Route::post('/admin/update', 'AdminController@update');
+
+    //管理员 新增
+    Route::get('/admin/add', 'AdminController@add');
+    Route::post('/admin/add', 'AdminController@doAdd');
 });

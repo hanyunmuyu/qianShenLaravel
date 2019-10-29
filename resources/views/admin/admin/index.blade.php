@@ -35,17 +35,7 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label">性别</label>
-                    <div class="layui-input-block">
-                        <select name="sex">
-                            <option value="0">不限</option>
-                            <option value="1">男</option>
-                            <option value="2">女</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="LAY-user-front-search">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="admin-search">
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                     </button>
                 </div>
@@ -127,11 +117,11 @@
 
 
         //监听搜索
-        form.on('submit(LAY-user-front-search)', function (data) {
+        form.on('submit(admin-search)', function (data) {
             var field = data.field;
 
             //执行重载
-            table.reload('LAY-user-manage', {
+            table.reload('LAY-admin-manage', {
                 where: field
             });
         });
@@ -196,7 +186,7 @@
         //事件
         var active = {
             batchdel: function () {
-                var checkStatus = table.checkStatus('LAY-user-manage')
+                var checkStatus = table.checkStatus('LAY-admin-manage')
                     , checkData = checkStatus.data; //得到选中的数据
 
                 if (checkData.length === 0) {
@@ -218,7 +208,7 @@
                           //,……
                         });
                         */
-                        table.reload('LAY-user-manage');
+                        table.reload('LAY-admin-manage');
                         layer.msg('已删除');
                     });
                 });
@@ -226,14 +216,14 @@
             , add: function () {
                 layer.open({
                     type: 2
-                    , title: '添加用户'
-                    , content: 'userform.html'
+                    , title: '添加管理员'
+                    , content: '{{admin_url('/admin/add')}}'
                     , maxmin: true
                     , area: ['500px', '450px']
                     , btn: ['确定', '取消']
                     , yes: function (index, layero) {
                         var iframeWindow = window['layui-layer-iframe' + index]
-                            , submitID = 'LAY-user-front-submit'
+                            , submitID = 'admin-add-submit'
                             , submit = layero.find('iframe').contents().find('#' + submitID);
 
                         //监听提交
@@ -241,9 +231,26 @@
                             var field = data.field; //获取提交的字段
 
                             //提交 Ajax 成功后，静态更新表格中的数据
-                            //$.ajax({});
-                            table.reload('LAY-user-front-submit'); //数据刷新
-                            layer.close(index); //关闭弹层
+                            $.ajax({
+                                url: '{{admin_url('/admin/add')}}',
+                                method: 'post',
+                                data: field,
+                                success: function (res) {
+                                    if (res.code === 0) {
+                                        layer.msg(res.msg, {
+                                            offset: '15px'
+                                            , icon: 1
+                                        });
+                                        table.reload('LAY-admin-manage'); //数据刷新
+                                        layer.close(index); //关闭弹层
+                                    } else {
+                                        layer.msg(res.msg, {
+                                            offset: '15px'
+                                            , icon: 2
+                                        });
+                                    }
+                                }
+                            });
                         });
 
                         submit.trigger('click');
