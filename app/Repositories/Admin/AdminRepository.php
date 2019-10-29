@@ -38,6 +38,7 @@ class AdminRepository
     {
         return Admin::where('user_name', $userName)->first();
     }
+
     public function updateAdmin($adminId, $data)
     {
         return Admin::where('id', $adminId)->update($data);
@@ -46,5 +47,10 @@ class AdminRepository
     public function addAdmin($data)
     {
         return Admin::create($data);
+    }
+
+    public function deleteAdmin($adminId)
+    {
+        return Admin::where('id', $adminId)->delete();
     }
 }

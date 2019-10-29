@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50645
 File Encoding         : 65001
 
-Date: 2019-10-28 15:16:20
+Date: 2019-10-29 14:08:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,12 +35,15 @@ CREATE TABLE `admins` (
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admins
 -- ----------------------------
-INSERT INTO `admins` VALUES ('1', null, 'hanyun', null, '2019-10-28 15:15:29', '2019-10-28 07:15:29', '15701308875', '1355081829@qq.com', '寒云', 'e3y9huOZtbcbgS2QWHjqg1VqOK0CQSjZt7WMfTnGYMxAryC1h6Fega9lxcuI', '1', '1', null);
+INSERT INTO `admins` VALUES ('1', '$2y$10$aORXX/cg9LZHnqoiiwzSJugNNZkmNL.qdmOX7wdzxkYYUSqH9yPtq', 'hanyun', null, '2019-10-29 12:53:48', '2019-10-29 12:53:48', '15701308875', '1355081829@qq.com', '寒云', 'e3y9huOZtbcbgS2QWHjqg1VqOK0CQSjZt7WMfTnGYMxAryC1h6Fega9lxcuI', '1', '1', null);
+INSERT INTO `admins` VALUES ('2', '$2y$10$aORXX/cg9LZHnqoiiwzSJugNNZkmNL.qdmOX7wdzxkYYUSqH9yPtq', 'muyu', null, '2019-10-29 13:40:03', '2019-10-29 13:40:03', '15701308875', '1355081829@qq.com', null, null, '1', '1', null);
+INSERT INTO `admins` VALUES ('3', '$2y$10$ure4IK37zPFNycooG/7pPuFqDSY/5HZm6EtqWo8bWEOpDJQshX1hi', 'hanyunmuyu', null, '2019-10-29 13:40:05', '2019-10-29 13:40:05', '15701308875', '1355081829@qq.com', null, null, '2', '1', null);
+INSERT INTO `admins` VALUES ('4', '$2y$10$WEhPyJznFEBxwlm8xhzeNu4Spo7BXJDJnX.giMDZ10fE/ns6d0LV6', '用户名', null, '2019-10-29 14:07:14', '2019-10-29 14:07:14', '15701308875', '1915078889@qq.com', null, null, '1', '1', null);
 
 -- ----------------------------
 -- Table structure for area

@@ -19,19 +19,25 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">ID</label>
                     <div class="layui-input-block">
-                        <input type="text" name="id" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="id" placeholder="请输入id" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">用户名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="mobile" placeholder="请输入手机号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-block">
-                        <input type="text" name="email" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -44,7 +50,6 @@
 
         <div class="layui-card-body">
             <div style="padding-bottom: 10px;">
-                <button class="layui-btn layuiadmin-btn-useradmin" data-type="batchdel">删除</button>
                 <button class="layui-btn layuiadmin-btn-useradmin" data-type="add">添加</button>
             </div>
 
@@ -61,7 +66,7 @@
             <script type="text/html" id="table-useradmin-webuser">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i
                             class="layui-icon layui-icon-edit"></i>编辑</a>
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i
                             class="layui-icon layui-icon-delete"></i>删除</a>
             </script>
         </div>
@@ -143,7 +148,6 @@
                         //监听提交
                         iframeWindow.layui.form.on('submit(' + submitID + ')', function (data) {
                             var field = data.field; //获取提交的字段
-                            console.log(data.field.status);
                             if (data.field.status === undefined) {
                                 data.field.status = 0;
                             }
@@ -179,7 +183,41 @@
                     }
                 })
 
+            } else if (obj.event === 'delete') {
+
+
+                layer.prompt({
+                    formType: 1
+                    , title: '敏感操作，请验证口令'
+                }, function (value, index) {
+                    layer.close(index);
+                    layer.confirm('确定删除吗？', function (index) {
+                        $.ajax({
+                            url: '{{admin_url('/admin/delete')}}',
+                            data: {id: obj.data.id, password: value,_token:'{{csrf_token()}}'},
+                            method: 'post',
+                            success: function (res) {
+                                if (res.code === 0) {
+                                    layer.msg(res.msg, {
+                                        offset: '15px'
+                                        , icon: 1
+                                    });
+                                    table.reload('LAY-admin-manage'); //数据刷新
+                                    layer.close(index); //关闭弹层
+                                } else {
+                                    layer.msg(res.msg, {
+                                        offset: '15px'
+                                        , icon: 2
+                                    });
+
+                                }
+                            }
+                        });
+                    });
+                });
+
             }
+
         });
 
 

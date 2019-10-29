@@ -89,7 +89,6 @@ class AdminController extends Controller
 
     public function update(Request $request)
     {
-
         $id = $request->get('id');
         $data = $request->all();
         unset($data['_token']);
@@ -100,7 +99,23 @@ class AdminController extends Controller
         if (isset($data['password']) && $data['password']) {
             $data['password'] = Hash::make($data['password']);
         }
+        $admin = $this->adminRepository->getAdminByUserName($data['user_name']);
+        if ($admin && $admin->id != $id) {
+            return $this->error('用户名已经被占用');
+        }
         $this->adminRepository->updateAdmin($id, $data);
+        return $this->success();
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->get('id');
+        $password = $request->get('password');
+        $admin = auth('admin')->user();
+        if (!Hash::check($password, $admin->password)) {
+            return $this->error('密码错误');
+        }
+        $this->adminRepository->deleteAdmin($id);
         return $this->success();
     }
 }

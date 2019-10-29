@@ -39,4 +39,5 @@ Route::group(['middleware' => ['adminAuth']], function () {
     //管理员 新增
     Route::get('/admin/add', 'AdminController@add');
     Route::post('/admin/add', 'AdminController@doAdd');
+    Route::post('/admin/delete', 'AdminController@delete');
 });
