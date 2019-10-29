@@ -40,4 +40,11 @@ Route::group(['middleware' => ['adminAuth']], function () {
     Route::get('/admin/add', 'AdminController@add');
     Route::post('/admin/add', 'AdminController@doAdd');
     Route::post('/admin/delete', 'AdminController@delete');
+
+    //角色 列表
+    Route::get('/role/index', 'RoleController@index');
+    Route::get('/role/list', 'RoleController@list');
+    //角色 添加角色
+    Route::get('/role/add', 'RoleController@add');
+    Route::post('/role/add', 'RoleController@doAdd');
 });

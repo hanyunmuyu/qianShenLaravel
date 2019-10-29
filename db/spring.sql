@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50645
 File Encoding         : 65001
 
-Date: 2019-10-29 14:08:55
+Date: 2019-10-29 17:17:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,10 +40,10 @@ CREATE TABLE `admins` (
 -- ----------------------------
 -- Records of admins
 -- ----------------------------
-INSERT INTO `admins` VALUES ('1', '$2y$10$aORXX/cg9LZHnqoiiwzSJugNNZkmNL.qdmOX7wdzxkYYUSqH9yPtq', 'hanyun', null, '2019-10-29 12:53:48', '2019-10-29 12:53:48', '15701308875', '1355081829@qq.com', '寒云', 'e3y9huOZtbcbgS2QWHjqg1VqOK0CQSjZt7WMfTnGYMxAryC1h6Fega9lxcuI', '1', '1', null);
-INSERT INTO `admins` VALUES ('2', '$2y$10$aORXX/cg9LZHnqoiiwzSJugNNZkmNL.qdmOX7wdzxkYYUSqH9yPtq', 'muyu', null, '2019-10-29 13:40:03', '2019-10-29 13:40:03', '15701308875', '1355081829@qq.com', null, null, '1', '1', null);
+INSERT INTO `admins` VALUES ('1', '$2y$10$aORXX/cg9LZHnqoiiwzSJugNNZkmNL.qdmOX7wdzxkYYUSqH9yPtq', 'hanyun', null, '2019-10-29 16:23:35', '2019-10-29 16:23:35', '15701308876', '1355081829@qq.com', '寒云', 'e3y9huOZtbcbgS2QWHjqg1VqOK0CQSjZt7WMfTnGYMxAryC1h6Fega9lxcuI', '1', '1', null);
+INSERT INTO `admins` VALUES ('2', '$2y$10$aORXX/cg9LZHnqoiiwzSJugNNZkmNL.qdmOX7wdzxkYYUSqH9yPtq', 'muyu', null, '2019-10-29 16:57:17', '2019-10-29 16:57:17', '15701308875', '1355081829@qq.com', null, '54c7XoPvQNjJap3RXYXDcmwqW7LFvGNeVy0GdWv0EcriOdm4oN6KozmLQjzF', '2', '1', null);
 INSERT INTO `admins` VALUES ('3', '$2y$10$ure4IK37zPFNycooG/7pPuFqDSY/5HZm6EtqWo8bWEOpDJQshX1hi', 'hanyunmuyu', null, '2019-10-29 13:40:05', '2019-10-29 13:40:05', '15701308875', '1355081829@qq.com', null, null, '2', '1', null);
-INSERT INTO `admins` VALUES ('4', '$2y$10$WEhPyJznFEBxwlm8xhzeNu4Spo7BXJDJnX.giMDZ10fE/ns6d0LV6', '用户名', null, '2019-10-29 14:07:14', '2019-10-29 14:07:14', '15701308875', '1915078889@qq.com', null, null, '1', '1', null);
+INSERT INTO `admins` VALUES ('4', '$2y$10$WEhPyJznFEBxwlm8xhzeNu4Spo7BXJDJnX.giMDZ10fE/ns6d0LV6', '用户名', null, '2019-10-29 16:56:51', '2019-10-29 16:56:51', '15701308875', '1915078889@qq.com', null, null, '2', '1', null);
 
 -- ----------------------------
 -- Table structure for area
@@ -4070,20 +4070,74 @@ INSERT INTO `community` VALUES ('410', '社团简介', '1', '1', '0', '0', '社�
 INSERT INTO `community` VALUES ('411', '社团分类', '1', '1', '0', '0', '社团分类\n', '1', null, '1', '1', '4', '1', null, null, null);
 
 -- ----------------------------
+-- Table structure for permissions
+-- ----------------------------
+DROP TABLE IF EXISTS `permissions`;
+CREATE TABLE `permissions` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `path` varchar(255) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `rank` int(255) unsigned NOT NULL DEFAULT '0',
+  `icon` varchar(255) NOT NULL DEFAULT 'layui-icon-app',
+  PRIMARY KEY (`id`),
+  KEY `path` (`path`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of permissions
+-- ----------------------------
+INSERT INTO `permissions` VALUES ('1', '0', '', '用户管理', '0', 'layui-icon-app');
+INSERT INTO `permissions` VALUES ('2', '1', '/user/index', '网站用户', '0', 'layui-icon-app');
+INSERT INTO `permissions` VALUES ('3', '1', '/admin/index', '后台管理员', '0', 'layui-icon-app');
+INSERT INTO `permissions` VALUES ('4', '0', '', '社团管理', '0', 'layui-icon-app');
+INSERT INTO `permissions` VALUES ('5', '4', '/community/index', '社团列表', '0', 'layui-icon-app');
+INSERT INTO `permissions` VALUES ('6', '4', '/category/index', '社团类别', '0', 'layui-icon-app');
+INSERT INTO `permissions` VALUES ('7', '1', '/role/index', '角色管理', '0', 'layui-icon-app');
+INSERT INTO `permissions` VALUES ('8', '0', '', '首页', '1', 'layui-icon-app');
+INSERT INTO `permissions` VALUES ('9', '8', '/dashboard', '控制台', '0', 'layui-icon-app');
+
+-- ----------------------------
 -- Table structure for roles
 -- ----------------------------
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `role_name` varchar(255) DEFAULT NULL COMMENT '角色名称',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of roles
 -- ----------------------------
-INSERT INTO `roles` VALUES ('1', '超级管理员');
-INSERT INTO `roles` VALUES ('2', '管理员');
+INSERT INTO `roles` VALUES ('1', '超级管理员', '2019-10-29 08:55:46', '2019-10-29 08:55:46');
+INSERT INTO `roles` VALUES ('2', '管理员', '2019-10-29 08:56:33', '2019-10-29 08:56:33');
+
+-- ----------------------------
+-- Table structure for role_permissions
+-- ----------------------------
+DROP TABLE IF EXISTS `role_permissions`;
+CREATE TABLE `role_permissions` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) unsigned NOT NULL,
+  `permission_id` int(11) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_permissions
+-- ----------------------------
+INSERT INTO `role_permissions` VALUES ('1', '1', '2', '2019-10-29 08:55:46', '2019-10-29 08:55:46');
+INSERT INTO `role_permissions` VALUES ('2', '1', '3', '2019-10-29 08:55:46', '2019-10-29 08:55:46');
+INSERT INTO `role_permissions` VALUES ('3', '1', '5', '2019-10-29 08:55:46', '2019-10-29 08:55:46');
+INSERT INTO `role_permissions` VALUES ('4', '1', '6', '2019-10-29 08:55:46', '2019-10-29 08:55:46');
+INSERT INTO `role_permissions` VALUES ('5', '1', '7', '2019-10-29 08:55:46', '2019-10-29 08:55:46');
+INSERT INTO `role_permissions` VALUES ('6', '2', '2', '2019-10-29 08:56:33', '2019-10-29 08:56:33');
+INSERT INTO `role_permissions` VALUES ('7', '2', '9', null, null);
 
 -- ----------------------------
 -- Table structure for schools
