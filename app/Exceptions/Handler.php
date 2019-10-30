@@ -50,27 +50,15 @@ class Handler extends ExceptionHandler
         if ($exception instanceof UnauthorizedHttpException) {
             $preException = $exception->getPrevious();
             if ($preException instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
-                return response()->json(['code' => 4001, 'msg' => 'TOKEN_EXPIRED'])
-                    ->header('Access-Control-Allow-Origin', '*')
-                    ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
-                    ->header('Access-Control-Allow-Headers', 'x-requested-with,content-type,Authorization');
+                return response()->json(['code' => 4001, 'msg' => 'TOKEN_EXPIRED']);
             } else if ($preException instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
-                return response()->json(['code' => 4002, 'msg' => 'TOKEN_INVALID'])
-                    ->header('Access-Control-Allow-Origin', '*')
-                    ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
-                    ->header('Access-Control-Allow-Headers', 'x-requested-with,content-type,Authorization');
+                return response()->json(['code' => 4002, 'msg' => 'TOKEN_INVALID']);
             } else if ($preException instanceof \Tymon\JWTAuth\Exceptions\TokenBlacklistedException) {
-                return response()->json(['code' => 4002, 'msg' => 'TOKEN_BLACKLISTED'])
-                    ->header('Access-Control-Allow-Origin', '*')
-                    ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
-                    ->header('Access-Control-Allow-Headers', 'x-requested-with,content-type,Authorization');
+                return response()->json(['code' => 4002, 'msg' => 'TOKEN_BLACKLISTED']);
             }
 
             if ($exception->getMessage() === 'Token not provided') {
-                return response()->json(['code' => 4003, 'msg' => 'Token not provided'])
-                    ->header('Access-Control-Allow-Origin', '*')
-                    ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
-                    ->header('Access-Control-Allow-Headers', 'x-requested-with,content-type,Authorization');
+                return response()->json(['code' => 4003, 'msg' => 'Token not provided']);
             }
         }
         return parent::render($request, $exception);
