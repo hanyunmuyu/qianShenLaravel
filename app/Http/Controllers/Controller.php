@@ -14,12 +14,19 @@ class Controller extends BaseController
 
     protected function success($data = [], $msg = 'success', $code = 0)
     {
-        return response()->json(['code' => $code, 'msg' => $msg, 'data' => $this->deleteNull($data)]);
+        return response()
+            ->json(['code' => $code, 'msg' => $msg, 'data' => $this->deleteNull($data)])
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
+            ->header('Access-Control-Allow-Headers', 'x-requested-with,content-type,Authorization');
     }
 
     protected function error($msg = 'error', $code = 1)
     {
-        return response()->json(['code' => $code, 'msg' => $msg]);
+        return response()->json(['code' => $code, 'msg' => $msg])
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
+            ->header('Access-Control-Allow-Headers', 'x-requested-with,content-type,Authorization');
     }
 
     private function deleteNull($data)
