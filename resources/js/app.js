@@ -7,8 +7,12 @@ import Vue from 'vue';
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 import api from './api';
+import store from './store'
+import router from './router'
+import VueRouter from 'vue-router'
 
 Vue.use(MuseUI);
+Vue.use(VueRouter);
 Vue.prototype.$api = api;
 /**
  * The following block of code may be used to automatically register your
@@ -31,4 +35,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    store,
+    router
 });
