@@ -55,4 +55,9 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAvatarAttribute($avatar)
+    {
+        return env('MIX_SENTRY_DSN_PUBLIC').$avatar;
+    }
 }

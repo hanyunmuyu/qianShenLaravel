@@ -4,6 +4,9 @@ import SchoolList from '../pages/school/SchoolList'
 import SchoolIndex from '../pages/school/SchoolIndex'
 import ExploreIndex from '../pages/explore/ExploreIndex'
 import Attention from '../pages/explore/Attention'
+import Login from '../pages/login/Login'
+import Register from '../pages/login/Register'
+import UserCenter from '../pages/user/UserCenter'
 
 const router = new VueRouter({
     routes: [
@@ -39,9 +42,23 @@ const router = new VueRouter({
                         },
                     ]
                 },
+                {
+                    path: '/user/center',
+                    name: 'UserCenter',
+                    component: UserCenter,
+                },
             ]
         },
-
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login,
+        },
+        {
+            path: '/register',
+            name: 'Register',
+            component: Register,
+        },
     ]
 });
 export default router

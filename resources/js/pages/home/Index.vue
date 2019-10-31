@@ -6,7 +6,7 @@
                 <mu-bottom-nav-item title="邂逅" value="favorite" icon="favorite"></mu-bottom-nav-item>
                 <mu-bottom-nav-item title="高校" value="school" to="/" icon="school"></mu-bottom-nav-item>
                 <mu-bottom-nav-item title="发现" value="explore" to="/explore" icon="explore"></mu-bottom-nav-item>
-                <mu-bottom-nav-item title="我的" value="person" icon="person"></mu-bottom-nav-item>
+                <mu-bottom-nav-item title="我的" value="person" to="/user/center" icon="person"></mu-bottom-nav-item>
             </mu-bottom-nav>
         </div>
     </div>

@@ -7,10 +7,6 @@
 <script>
     export default {
         mounted() {
-            this.$api.login().then((res) => {
-                console.log(res)
-            });
-            console.log('Component mounted.')
         }
     }
 </script>

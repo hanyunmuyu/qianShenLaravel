@@ -10,10 +10,15 @@ import api from './api';
 import store from './store'
 import router from './router'
 import VueRouter from 'vue-router'
+import Toast from 'muse-ui-toast';
+import storage from './storage'
+import 'material-icons/iconfont/material-icons.css';
 
+Vue.use(Toast);
 Vue.use(MuseUI);
 Vue.use(VueRouter);
 Vue.prototype.$api = api;
+Vue.prototype.$storage = storage
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
