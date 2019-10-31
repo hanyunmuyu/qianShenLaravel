@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 import Home from '../pages/home/Index'
 import SchoolList from '../pages/school/SchoolList'
 import SchoolIndex from '../pages/school/SchoolIndex'
+import SchoolActive from '../pages/school/SchoolActive'
 import ExploreIndex from '../pages/explore/ExploreIndex'
 import Attention from '../pages/explore/Attention'
 import Login from '../pages/login/Login'
@@ -12,16 +13,23 @@ import FriendList from '../pages/school/FriendList'
 const router = new VueRouter({
     routes: [
         {
-            path: '',
+            path: '/',
             name: 'Home',
             component: Home,
             children: [
                 {
 
-                    path: '',
+                    path: '/',
                     name: 'SchoolIndex',
                     component: SchoolIndex,
                     children: [
+                        {
+
+                            path: '',
+                            name: 'SchoolActive',
+                            component: SchoolActive,
+                        },
+
                         {
 
                             path: '/school/list',
