@@ -23,6 +23,10 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+    a {
+        &:link, &:hover, &:active &:visited {
+            text-decoration: none;
+        }
+    }
 </style>

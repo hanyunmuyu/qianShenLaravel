@@ -7,6 +7,7 @@ import Attention from '../pages/explore/Attention'
 import Login from '../pages/login/Login'
 import Register from '../pages/login/Register'
 import UserCenter from '../pages/user/UserCenter'
+import FriendList from '../pages/school/FriendList'
 
 const router = new VueRouter({
     routes: [
@@ -26,6 +27,12 @@ const router = new VueRouter({
                             path: '/school/list',
                             name: 'SchoolList',
                             component: SchoolList,
+                        },
+                        {
+
+                            path: '/friend/list',
+                            name: 'FriendList',
+                            component: FriendList,
                         },
                     ]
                 },
