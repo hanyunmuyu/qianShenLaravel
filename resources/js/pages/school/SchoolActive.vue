@@ -54,7 +54,6 @@
                     {
                         thumbUp: false,
                         favorite: false,
-                        favoriteIcon: 'favorite_border',
                     },
                     {
                         thumbUp: false,
