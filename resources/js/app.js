@@ -14,6 +14,10 @@ import Toast from 'muse-ui-toast';
 import storage from './storage'
 import 'material-icons/iconfont/material-icons.css';
 import 'animate.css';
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+// use
+Vue.use(mavonEditor)
 Vue.use(Toast);
 Vue.use(MuseUI);
 Vue.use(VueRouter);

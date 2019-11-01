@@ -12,26 +12,24 @@
         <div style="height: 66px"></div>
         <router-view></router-view>
         <div style="margin-bottom: 56px"></div>
-        <mavon-editor
-                class="md"
-                v-model="context"
-                :subfield="prop.subfield"
-                :defaultOpen="prop.defaultOpen"
-                :toolbarsFlag="prop.toolbarsFlag"
-                :editable="prop.editable"
-                :codeStyle="prop.codeStyle"
-                :scrollStyle="prop.scrollStyle"
-        />
+
+        <mavon-editor ref=md
+                      @imgAdd="imgAdd"
+                      @imgDel="imgDel"
+                      v-model="context"
+                      :toolbars="toolbars"
+                      codeStyle="solarized-dark"/>
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "SchoolIndex",
+        name: "SchoolPost",
         data() {
             return {
                 tab: 0,
-                context: '```php\n' +
+                context: '```php5\n' +
                     '\n' +
                     '<?php\n' +
                     '\n' +
@@ -87,16 +85,25 @@
                 },
             };
         },
-        computed: {
-            prop() {
-                return {
-                    subfield: false,// 单双栏模式
-                    defaultOpen: 'preview',//edit： 默认展示编辑区域 ， preview： 默认展示预览区域
-                    codeStyle: 'solarized-dark',
-                    editable: false,
-                    toolbarsFlag: false,
-                    scrollStyle: true,
-                };
+        methods: {
+            // 绑定@imgAdd event
+            imgAdd(pos, $file) {
+                // 第一步.将图片上传到服务器.
+                var formdata = new FormData();
+                formdata.append('file', $file);
+                this.$api.upload(formdata, {'Content-Type': 'multipart/form-data'})
+                    .then((res) => {
+                        // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+                        /**
+                         * $vm 指为mavonEditor实例，可以通过如下两种方式获取
+                         * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，`$vm`为`mavonEditor`
+                         * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
+                         */
+                        this.$refs.md.$img2Url(pos, res.data.imgUrl);
+                    })
+            },
+            imgDel(file) {
+                console.log(file)
             }
         },
         mounted() {
