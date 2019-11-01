@@ -9,6 +9,7 @@ import Login from '../pages/login/Login'
 import Register from '../pages/login/Register'
 import UserCenter from '../pages/user/UserCenter'
 import FriendList from '../pages/school/FriendList'
+import UserDetail from '../pages/user/UserDetail'
 
 const router = new VueRouter({
     routes: [
@@ -73,6 +74,11 @@ const router = new VueRouter({
             path: '/register',
             name: 'Register',
             component: Register,
+        },
+        {
+            path: '/user/detail',
+            name: 'UserDetail',
+            component: UserDetail,
         },
     ]
 });

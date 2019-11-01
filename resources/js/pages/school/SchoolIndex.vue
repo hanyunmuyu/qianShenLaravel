@@ -9,7 +9,9 @@
                 <mu-tab>校园</mu-tab>
             </mu-tabs>
         </mu-appbar>
+        <div style="height: 66px"></div>
         <router-view></router-view>
+        <div style="margin-bottom: 56px"></div>
     </div>
 </template>
 

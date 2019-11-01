@@ -13,7 +13,7 @@ import VueRouter from 'vue-router'
 import Toast from 'muse-ui-toast';
 import storage from './storage'
 import 'material-icons/iconfont/material-icons.css';
-
+import 'animate.css';
 Vue.use(Toast);
 Vue.use(MuseUI);
 Vue.use(VueRouter);

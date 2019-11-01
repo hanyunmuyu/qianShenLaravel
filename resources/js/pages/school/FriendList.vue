@@ -26,7 +26,7 @@
                 <mu-list-item-content>
                     <mu-list-item-title>这个周末一起吃饭么?</mu-list-item-title>
                     <mu-list-item-sub-title>
-                        sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+                        <span style="color: rgba(0, 0, 0, .87)">Myron Liu -</span> 周末要来你这里出差，要不要一起吃个饭呀，实在编不下去了,哈哈哈哈哈哈
                     </mu-list-item-sub-title>
                 </mu-list-item-content>
             </mu-list-item>
