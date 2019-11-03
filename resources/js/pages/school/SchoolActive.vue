@@ -20,8 +20,29 @@
                 </mu-flex>
 
             </mu-col>
-            <mu-col>
-                ssssssssssss
+            <mu-col span="12">
+                <mu-sub-header>1111111111111</mu-sub-header>
+            </mu-col>
+            <mu-col span="12">
+                <div v-if="imgList.length===1" class="nine-container">
+                    <div class="nine-img col-a"
+                         style="height: auto;max-height: 400px"
+                         v-for="imgSrc,index in imgList" :key="index">
+                        <img :src="imgSrc">
+                    </div>
+                </div>
+                <div v-else-if="imgList.length===2" class="nine-container">
+                    <div class="nine-img col-b"
+                         v-for="imgSrc,index in imgList" :key="index">
+                        <img :src="imgSrc">
+                    </div>
+                </div>
+                <div v-else="imgList.length" class="nine-container">
+                    <div class="nine-img col-c"
+                         v-for="imgSrc,index in imgList" :key="index">
+                        <img :src="imgSrc">
+                    </div>
+                </div>
             </mu-col>
             <mu-col span="12" style="margin-top: 8px">
                 <mu-row align-content="stretch" style="text-align: center">
@@ -59,7 +80,39 @@
                         thumbUp: false,
                         favorite: false,
                     },
-                ]
+                ],
+                imgList: [
+                    '/images/gg.jpg',
+                    '/images/flutter.jpg',
+                    '/images/flutter.jpg',
+                    // '/images/mm.jpg',
+                    // '/images/mm.jpg',
+                    // '/images/dream.png',
+                    // '/images/flutter.jpg',
+                    // '/images/flutter.jpg',
+                    // '/images/dream.png',
+                ],
+                'colC': 'colC'
+            }
+        },
+        computed: {
+            img() {
+                let a = 'd';
+                let len = this.$data.imgList.length;
+                switch (len) {
+                    case 1:
+                        a = 'a';
+                        break;
+                    case 2:
+                        a = 'b';
+                        break;
+                    case len > 3:
+                        a = 'c';
+                        break;
+                    default:
+                        a = 'c';
+                }
+                return a;
             }
         },
         methods: {
@@ -75,4 +128,36 @@
 
 <style lang="scss">
 
+
+    .nine-container {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+
+        .nine-img {
+            float: left;
+            overflow: hidden;
+            height: 80px;
+            padding: 2px;
+            display: table-cell;
+            text-align: center;
+            vertical-align: center;
+            margin: 0 auto;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+    .col-a {
+        width: 100%;
+    }
+
+    .col-b {
+        width: 50%;
+    }
+
+    .col-c {
+        width: 33%;
+    }
 </style>
